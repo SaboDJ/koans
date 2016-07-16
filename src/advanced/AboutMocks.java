@@ -15,7 +15,16 @@ public class AboutMocks {
             fail("Default collaborator's behavior is complicating testing.");
         }
     }
+    class ClassOtherColab implements Collaborator {
+        public ClassOtherColab(){
 
+        }
+
+        @Override
+        public void doBusinessStuff() {
+
+        }
+    }
     static class ClassUnderTest {
         Collaborator c;
 
@@ -24,6 +33,7 @@ public class AboutMocks {
             // that doesn't throw exception
             this(new ExplosiveCollaborator());
         }
+
 
         public ClassUnderTest(Collaborator c) {
             this.c = c;
@@ -40,7 +50,7 @@ public class AboutMocks {
         // HINT: pass a safe Collaborator implementation to constructor
         // new ClassUnderTest(new Collaborator(){... it should not be the
         // objective of this test to test that collaborator, so replace it
-        new ClassUnderTest().doSomething();
+        new ClassUnderTest(new ClassOtherColab()).doSomething();
     }
 
 }
