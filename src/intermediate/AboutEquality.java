@@ -42,13 +42,24 @@ public class AboutEquality {
             // Change this implementation to match the equals contract
             // Car objects with same horsepower and name values should be considered equal
             // http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#equals(java.lang.Object)
+            if(this == other){
+                return true;
+            }
+            if(!(other instanceof Car)){
+                return false;
+            }
+            Car car = (Car)other;
+            if(this.name.equals(car.name) && this.horsepower == car.horsepower){
+                return true;
+            }
             return false;
         }
 
         @Override
         public int hashCode() {
             // @see http://download.oracle.com/javase/6/docs/api/java/lang/Object.html#hashCode()
-            return super.hashCode();
+            // return super.hashCode();
+            return horsepower*33+5;
         }
     }
 
@@ -57,8 +68,8 @@ public class AboutEquality {
         Car car1 = new Car("Beetle", 50);
         Car car2 = new Car("Beetle", 50);
         // @see Car.equals (around line 45) for the place to solve this
-        assertEquals(car1.equals(car2), false);
-        assertEquals(car2.equals(car1), false);
+        assertEquals(car1.equals(car2), true);
+        assertEquals(car2.equals(car1), true);
     }
 
     @Koan
@@ -94,8 +105,8 @@ public class AboutEquality {
         // Implement Car.hashCode around line 51 so that the following assertions pass
         Car car1 = new Car("Beetle", 50);
         Car car2 = new Car("Beetle", 50);
-        assertEquals(car1.equals(car2), false);
-        assertEquals(car1.hashCode() == car2.hashCode(), false);
+        assertEquals(car1.equals(car2), true);
+        assertEquals(car1.hashCode() == car2.hashCode(), true);
     }
 
     static class Chicken {

@@ -98,7 +98,7 @@ public class AboutInnerClasses {
             }
         }; // Complete the code so that the statement below is correct.
         // Look at the koan above for inspiration
-        assertEquals(ignoreable.ignoreAll(), null);
+        assertEquals(ignoreable.ignoreAll(), new Ignoreable(){public String ignoreAll(){return null;}}.ignoreAll());
         // Did you just created an object of an interface type?
         // Or did you create a class that implemented this interface and
         // an object of that type?
